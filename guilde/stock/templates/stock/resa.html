@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>La Guilde - Réservation</title>
+    <link rel="icon" href="https://www.universite-paris-saclay.fr/sites/default/files/2020-07/laguilde.png">
+    {% load static %}
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'stock/styles.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'stock/infojeu.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'stock/resa.css' %}" />
+    <!-- Custom CSS -->
+</head>
+
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="http://127.0.0.1:8000">Le comptoir de La Guilde</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page"
+                            href="http://127.0.0.1:8000">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/stock/contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/stock/js">Jeux de société</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/stock/jv">Jeux vidéo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/stock/jr">Jeux de rôle</a></li>
+
+                </ul>
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" type="submit"><a class="nav-link"
+                            href="https://paulpey.itch.io/super-pink-man-adventure?secret=f5B5H1mRAqn1VyYyC5R3qfD7uE">
+                            <i class="bi-cart-fill me-1"></i>
+                            Jouer avec nous
+                    </button></a>
+                </form>
+                <ul>
+                {% if user.is_authenticated %}
+                <li class="nav-item">Joueur : {{ user.get_username }}</li>
+
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/stock/mygames">Mes emprunts</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+                {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Header-->
+    <header class="bg-danger py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">La Guilde</h1>
+                <p class="lead fw-normal text-white-50 mb-0">L'association de jeux de CentraleSupélec</p>
+            </div>
+        </div>
+    </header>
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+
+                <div class = "bigger-game-box">
+                    <div>
+                        <h2 class="commentaire espaceenbas fw-bolder"> Vous souhaitez réserver le jeu {{nomjeu}}.</h2>
+                    </div>
+                    <div class="game-box2">
+                        <div class="game-img2">
+                            <!-- Product image-->
+                            <img class="card-img-top" src={{urljeu}} alt="..." />
+                        </div>  
+
+                        <div class="game-txt2">
+                            <!-- Product name-->
+                            <h2 class="fw-bolder"> {{nomjeu}} </h2>
+                            <p class = "justifymore game-desc"> {{descjeu}} </p>
+
+                    </div>
+                </div>  
+                <div>
+                    <h2 class="commentaire espaceenhaut fw-bolder"> Veuillez indiquer les informations relatives à votre réservation ci-dessous. </h2>
+                </div>      
+
+                {% block content %}
+                <h3 class="margeagauche fw-bolder">Réservation: {{ book_instance.book.title }}</h3>
+                <p class="commentaire espaceenhaut fw-bolder"> Date du début de la réservation </p>
+                <p class="margeagauche">   Entrez votre date au format AAAA-MM-JJ. (La réservation sera de 2 semaines au maximum) </p>
+
+                <form class="margeagauche" action="book/" method="post">
+                    {% csrf_token %}
+                    <input type ="text" id = "from_date" name="from_date">
+                    {% comment %} <a href="{% url 'book' %}">Renew</a> {% endcomment %}
+                    <input type="submit" value="Submit">
+                </form>
+                {% endblock %}
+                
+            </div>
+        </section>
+        <!-- Footer-->
+    <footer class="py-5 bg-danger">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Le comptoir de La Guilde 2023</p>
+        </div>
+    </footer>
+</body>
+</html>

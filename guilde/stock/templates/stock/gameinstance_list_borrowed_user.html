@@ -1,0 +1,17 @@
+{% block content %}
+    <h1>Borrowed games</h1>
+
+    {% if gameinstance_list %}
+    <ul>
+
+      {% for gameinst in gameinstance_list %}
+      <li class="{% if gameinst.is_overdue %}text-danger{% endif %}">
+        <a href="{% url 'game-detail' gameinst.game.pk %}">{{ gameinst.game.title }}</a> ({{ gameinst.echeance }})
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no games borrowed.</p>
+    {% endif %}
+{% endblock %}

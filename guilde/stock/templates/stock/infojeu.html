@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>La Guilde - jeu</title>
+    <link rel="icon" href="https://www.universite-paris-saclay.fr/sites/default/files/2020-07/laguilde.png">
+    {% load static %}
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'stock/styles.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'stock/infojeu.css' %}" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            margin: 10;
+        }
+
+            {
+            % if user.is_authenticated %
+        }
+
+        <li>User: {
+                {
+                user.get_username
+            }
+        }
+
+        </li><li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li> {
+            % else %
+        }
+
+        <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li> {
+            % endif %
+        }
+
+        h1 {
+            /* Couleur de fond rouge pour le titre */
+            color: white;
+            /* Couleur du texte en blanc pour le contraste */
+            padding: 20px;
+            /* Ajout de rembourrage pour l'espace à l'intérieur du titre */
+            margin: 10;
+            /* Pour s'assurer qu'il n'y a pas de marge à l'intérieur du titre */
+        }
+
+        form {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: -100px;
+        }
+
+        label {
+            display: block;
+            margin-right: 5px;
+        }
+
+        input {
+            padding: 5px;
+        }
+
+        button {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="http://127.0.0.1:8000">Le comptoir de La Guilde</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page"
+                                href="http://127.0.0.1:8000">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/stock/contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/stock/js">Jeux de société</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/stock/jv">Jeux vidéo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/stock/jr">Jeux de rôle</a></li>
+    
+                    </ul>
+                    <form class="d-flex">
+                        <button class="btn btn-outline-dark" type="submit"><a class="nav-link"
+                                href="https://paulpey.itch.io/super-pink-man-adventure?secret=f5B5H1mRAqn1VyYyC5R3qfD7uE">
+                                <i class="bi-cart-fill me-1"></i>
+                                Jouer avec nous
+                        </button></a>
+                    </form>
+                    <ul>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">Joueur : {{ user.get_username }}</li>
+    
+                    <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/stock/mygames">Mes emprunts</a></li>
+    
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+                    {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    <!-- Header-->
+    <header class="bg-danger py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">La Guilde</h1>
+                <p class="lead fw-normal text-white-50 mb-0">L'association de jeux de CentraleSupélec</p>
+            </div>
+        </div>
+    </header>
+        <!-- Section-->
+        <section class="py-5">
+
+                            <!-- Barre de recherche -->
+                            <div class="float-end text-white">
+                                <form action="search" method="get" class="input-group">
+                                    <div class="me-auto"> 
+                                    <input type="text" id="search" name="query" placeholder="Recherchez un jeu" >
+                                    <!--<button type="submit"><span class="fa fa-search"></span></button>-->
+                                    </div> 
+                                </form>
+                            </div>
+            <div class="container px-4 px-lg-5 mt-5">
+
+            <div class="bigger-game-box">
+                <div class="game-box">
+                    <div class="game-img">
+                        <!-- Product image-->
+                        <img class="card-img-top" src={{urljeu}} alt="..." />
+                    </div>
+
+                    <div class="game-txt">
+                        <!-- Product name-->
+                        <h2 class="fw-bolder"> {{nomjeu}} </h2>
+                        <p class="justifymore game-desc"> {{descjeu}} </p>
+
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="./resa/">Ajouter au
+                                    Panier</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="commentaire"> L'avis des joueurs : </h2>
+                    {% if bool %}
+                    <ul class='margeagauche'>
+                        <li>
+                            <strong>{{ nom1 }} {{ prenom1}}</strong>
+                            <p>{{ commentaires1 }}</p>
+                        </li>
+                        {% if nbr_commentaires > 1%}
+                        <li>
+                            <strong>{{ nom2 }} {{ prenom2}}</strong>
+                            <p>{{ commentaires2 }}</p>
+                        </li>
+                        {% if nbr_commentaires > 2%}
+                        <li>
+                            <strong>{{ nom3 }} {{ prenom3}}</strong>
+                            <p>{{ commentaires3 }}</p>
+                        </li>
+                        {% if nbr_commentaires > 3%}
+                        <li>
+                            <strong>{{ nom4 }} {{ prenom4}}</strong>
+                            <p>{{ commentaires4 }}</p>
+                        </li>
+                        {% if nbr_commentaires > 4%}
+                        <li>
+                            <strong>{{ nom5 }} {{ prenom5}}</strong>
+                            <p>{{ commentaires5 }}</p>
+                        </li>
+
+                        {% if nbr_commentaires < 5%} Ce jeu a reçu bien plus de commentaires ! {% endif %} {% endif %}
+                            {% endif %} {% endif %} {% endif %} </ul>
+                            {% else %}
+                            <p>Aucun joueur n'a partagé son avis !</p>
+                            {% endif %}
+                </div>
+
+
+            </div>
+            {% comment %}
+            <!-- Product details-->
+            <div class="card-body p-4">
+                <div class="text-center">
+                </div>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+            </div>
+            {% endcomment %}
+
+
+        </div>
+    </section>
+</body>
+
+</html>

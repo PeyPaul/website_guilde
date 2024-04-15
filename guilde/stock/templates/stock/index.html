@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>La Guilde - Accueil</title>
+    <link rel="icon" href="https://www.universite-paris-saclay.fr/sites/default/files/2020-07/laguilde.png">
+    {% load static %}
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'stock/styles.css' %}" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        form {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: -100px;
+        }
+
+        label {
+            display: block;
+            margin-right: 5px;
+        }
+
+        input {
+            padding: 5px;
+        }
+
+        button {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="http://127.0.0.1:8000">Le comptoir de La Guilde</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page"
+                            href="http://127.0.0.1:8000">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/stock/contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/stock/js">Jeux de société</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/stock/jv">Jeux vidéo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/stock/jr">Jeux de rôle</a></li>
+
+                </ul>
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" type="submit"><a class="nav-link"
+                            href="https://paulpey.itch.io/super-pink-man-adventure?secret=f5B5H1mRAqn1VyYyC5R3qfD7uE">
+                            <i class="bi-cart-fill me-1"></i>
+                            Jouer avec nous
+                    </button></a>
+                </form>
+                <ul>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">Joueur : {{ user.get_username }}</li>
+
+                    <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/stock/mygames">Mes emprunts</a>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link"
+                            href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Header-->
+    <header class="bg-danger py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">La Guilde</h1>
+                <p class="lead fw-normal text-white-50 mb-0">L'association de jeux de CentraleSupélec</p>
+            </div>
+        </div>
+    </header>
+    <!-- Section-->
+    <section class="py-5">
+
+        <!-- Barre de recherche -->
+        <div class="float-end text-white">
+            <form action="search" method="get" class="input-group">
+                <div class="me-auto">
+                    <input type="text" id="search" name="query" placeholder="Recherchez un jeu">
+                    <!--<button type="submit"><span class="fa fa-search"></span></button>-->
+                </div>
+            </form>
+        </div>
+
+
+        <!-- Product details (permet d'éviter le chevauchement avec la barre de recherche)-->
+        <div class="card-body p-4">
+            <div class="text-center">
+            </div>
+        </div>
+
+        <div class="col mb-5">
+            <div class="card h-100">
+
+                <!-- Product image-->
+                <img class="card-img-top"
+                    src="https://img.lemde.fr/2022/11/18/0/339/5832/3888/1440/960/60/0/2fb861e_1668788142068-dsc00978.jpg"
+                    alt="..." />
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Product name-->
+                        <h5 class="fw-bolder">Jeux de société</h5>
+                    </div>
+                </div>
+                <!-- Product actions-->
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center">
+                        <a class="btn btn-outline-dark mt-auto" href="http://127.0.0.1:8000/stock/js">Voir le catalogue des jeux de société</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-5">
+            <div class="card h-100">
+                <!-- Product image-->
+                <img class="card-img-top"
+                    src="https://www.campustech.fr/wp-content/uploads/2023/06/jeu-de-role-debutants.jpg" alt="..." />
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Product name-->
+                        <h5 class="fw-bolder">Jeux de rôle</h5>
+                    </div>
+                </div>
+                <!-- Product actions-->
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center">
+                        <a class="btn btn-outline-dark mt-auto" href="http://127.0.0.1:8000/stock/jr">Voir le catalogue des jeux de rôle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-5">
+            <div class="card h-100">
+
+                <!-- Product image-->
+                <img class="card-img-top"
+                    src="https://cdn2.unrealengine.com/riot-games-brings-league-tft-lor-valorant-to-epic-games-1920x1080-8a128d3f8a20.jpg"
+                    alt="..." />
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Product name-->
+                        <h5 class="fw-bolder">Jeux vidéo</h5>
+                    </div>
+                </div>
+                <!-- Product actions-->
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center">
+                        <a class="btn btn-outline-dark mt-auto" href="http://127.0.0.1:8000/stock/jv">Voir le catalogue des jeux vidéos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Footer-->
+    <footer class="py-5 bg-danger">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Le comptoir de La Guilde 2023</p>
+        </div>
+    </footer>
+</body>
+
+</html>

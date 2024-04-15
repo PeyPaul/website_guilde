@@ -1,0 +1,25 @@
+.center-container {
+    text-align: center;
+}
+form{
+    margin:0 auto;
+  }
+
+.center-form {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding: 20px;
+    border: 0px solid #ccc;
+    border-radius: 8px;
+    margin-left: 37%;
+}
+.center-containerbutton{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding: 20px;
+    border: 0px solid #ccc;
+    border-radius: 8px;
+    margin-left: 43%;
+}

@@ -1,0 +1,28 @@
+.espaceenbas{
+    margin-bottom: 40px;
+}
+.espaceenhaut{
+    margin-top: 40px;
+}
+.game-box2 {
+    display: flex;
+    flex-direction: row;
+    width : 700px
+}
+.game-img2 {
+    flex: 20%;
+    border-width : 5px;
+    margin-left: 50px;
+    ;
+  }
+.game-txt2 {
+    flex: 60%;
+    margin-left: 110px;
+  }
+
+.commentairesansmargehaute{
+    margin-left: 50px;
+  }
+.margeagauche{
+   margin-left: 50px; 
+}

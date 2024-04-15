@@ -1,0 +1,29 @@
+
+.bigger-game-box {
+  display: flex;
+  flex-direction: column;
+}
+.game-box {
+  display: flex;
+  flex-direction: row;
+  width : 800px;
+}
+.game-img {
+  flex: 40%;
+  border-width : 5px;
+  margin-left: 50px;
+}
+.game-txt {
+  flex: 60%;
+  margin-left: 110px;
+}
+.game-desc {
+  text-indent: 20px;
+}
+.justifymore{
+  text-align: justify;
+}
+.commentaire{
+  margin-top: 30px;
+  margin-left: 50px;
+}

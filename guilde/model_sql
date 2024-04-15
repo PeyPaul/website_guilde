@@ -1,0 +1,75 @@
+-- ---
+-- Globals
+-- ---
+
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
+
+-- ---
+-- Table 'box'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `box`;
+		
+CREATE TABLE `box` (
+  `id_box` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `state` CHAR NULL DEFAULT NULL,
+  `disponibility` CHAR NULL DEFAULT NULL,
+  PRIMARY KEY (`id_box`)
+);
+
+-- ---
+-- Table 'game'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `game`;
+		
+CREATE TABLE `game` (
+  `id_game` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `name` CHAR NULL DEFAULT NULL,
+  `description` CHAR NULL DEFAULT NULL,
+  `category` CHAR NULL DEFAULT NULL,
+  PRIMARY KEY (`id_game`)
+);
+
+-- ---
+-- Table 'user'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `user`;
+		
+CREATE TABLE `user` (
+  `id_user` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `first_name` CHAR NULL DEFAULT NULL,
+  `last_name` CHAR NULL DEFAULT NULL,
+  `phone` INTEGER NULL DEFAULT NULL,
+  `email` CHAR NULL DEFAULT NULL,
+  PRIMARY KEY (`id_user`)
+);
+
+-- ---
+-- Foreign Keys 
+-- ---
+
+
+-- ---
+-- Table Properties
+-- ---
+
+-- ALTER TABLE `box` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `game` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `user` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO `box` (`id_box`,`state`,`disponibility`) VALUES
+-- ('','','');
+-- INSERT INTO `game` (`id_game`,`name`,`description`,`category`) VALUES
+-- ('','','','');
+-- INSERT INTO `user` (`id_user`,`first_name`,`last_name`,`phone`,`email`) VALUES
+-- ('','','','','');
